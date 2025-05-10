@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "44fa47b9-4fb2-409b-8db0-3de75a463aa2",
+		"name": "URL Shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23831506"
+	},
+	"item": [
+		{
+			"name": "Valid",
+			"item": [
+				{
+					"name": "POST - Valid Shorten URL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"originalUrl\": \"https://www.google.com.au/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/shorten",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shorten"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Valid Redirect",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"originalUrl\": \"https://example.com/page?query=param\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/redirect?shortUrl=http://short.ly/YQlf31eh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"redirect"
+							],
+							"query": [
+								{
+									"key": "shortUrl",
+									"value": "http://short.ly/YQlf31eh"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Invalid",
+			"item": [
+				{
+					"name": "POST - Invalid Shorten URL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"originalUrl\": \"some-invalid-url-f0rm4t\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/shorten",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shorten"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Invalid Redirect",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"originalUrl\": \"https://example.com/page?query=param\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/redirect?shortUrl=some-r4ndom-inv4lid-URL",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"redirect"
+							],
+							"query": [
+								{
+									"key": "shortUrl",
+									"value": "some-r4ndom-inv4lid-URL"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
